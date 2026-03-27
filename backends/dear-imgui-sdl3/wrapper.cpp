@@ -8,6 +8,9 @@
 #ifdef DEAR_IMGUI_SDL3_OPENGL3_RENDERER
 #include "backends/imgui_impl_opengl3.h"
 #endif
+#ifdef DEAR_IMGUI_SDL3_SDLRENDERER3_RENDERER
+#include "backends/imgui_impl_sdlrenderer3.h"
+#endif
 
 #include <SDL3/SDL.h>
 #include <vector>
@@ -83,6 +86,36 @@ void ImGui_ImplOpenGL3_RenderDrawData_Rust(const ImDrawData* draw_data) {
 	void ImGui_ImplOpenGL3_UpdateTexture_Rust(ImTextureData* tex) {
 	    ImGui_ImplOpenGL3_UpdateTexture(tex);
 	}
+#endif
+
+#ifdef DEAR_IMGUI_SDL3_SDLRENDERER3_RENDERER
+    bool ImGui_ImplSDLRenderer3_Init_Rust(SDL_Renderer* renderer) {
+        return ImGui_ImplSDLRenderer3_Init(renderer);
+    }
+
+    void ImGui_ImplSDLRenderer3_CreateDeviceObjects_Rust() {
+        ImGui_ImplSDLRenderer3_CreateDeviceObjects();
+    }
+
+    void ImGui_ImplSDLRenderer3_DestroyDeviceObjects_Rust() {
+        ImGui_ImplSDLRenderer3_DestroyDeviceObjects();
+    }
+
+    void ImGui_ImplSDLRenderer3_Shutdown_Rust() {
+        ImGui_ImplSDLRenderer3_Shutdown();
+    }
+
+    void ImGui_ImplSDLRenderer3_NewFrame_Rust() {
+        ImGui_ImplSDLRenderer3_NewFrame();
+    }
+
+    void ImGui_ImplSDLRenderer3_RenderDrawData_Rust(const ImDrawData* draw_data, SDL_Renderer* renderer) {
+        ImGui_ImplSDLRenderer3_RenderDrawData(const_cast<ImDrawData*>(draw_data), renderer);
+    }
+
+    void ImGui_ImplSDLRenderer3_UpdateTexture_Rust(ImTextureData* tex) {
+        ImGui_ImplSDLRenderer3_UpdateTexture(tex);
+    }
 #endif
 
 	void ImGui_ImplSDL3_SetGamepadMode_AutoFirst_Rust() {

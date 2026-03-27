@@ -144,6 +144,12 @@ fn main() {
         build.file(backends_root.join("imgui_impl_opengl3.cpp"));
     }
 
+    // Optional SDL3-Renderer renderer backend.
+    if cfg!(feature = "sdlrenderer3-renderer") {
+        build.define("DEAR_IMGUI_SDL3_SDLRENDERER3_RENDERER", None);
+        build.file(backends_root.join("imgui_impl_sdlrenderer3.cpp"));
+    }
+
     // C wrappers used by Rust FFI (see wrapper.cpp).
     build.file("wrapper.cpp");
 
